@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0788c9">
+
+<title>¡Abdías cumple 6 años!</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #073b65;
+  background: linear-gradient(
+    180deg,
+    #05c7ed 0%,
+    #0788c9 65%,
+    #f5d99b 100%
+  );
+  overflow-x: hidden;
+}
+
+/* BURBUJAS ANIMADAS */
+.bubbles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -70px;
+  border: 2px solid #ffffffbb;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #fff,
+    #b9f4ff55 55%,
+    #ffffff22
+  );
+  box-shadow: inset -3px -4px 8px #ffffff55;
+  animation: subir linear infinite;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: .85; }
+  90% { opacity: .75; }
+  100% {
+    transform: translateY(-120vh) translateX(35px);
+    opacity: 0;
+  }
+}
+
+/* ARENA */
+.seafloor {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background: linear-gradient(#ffe8ae, #e8bb6d);
+  clip-path: polygon(
+    0 35%, 20% 10%, 40% 35%, 60% 8%,
+    80% 30%, 100% 12%, 100% 100%, 0 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.coral {
+  position: fixed;
+  bottom: 3px;
+  font-size: 34px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.coral.left { left: 5px; }
+.coral.right { right: 5px; }
+
+/* BOTÓN DE MÚSICA */
+.boton-musica {
+  position: fixed;
+  right: 15px;
+  bottom: 16px;
+  z-index: 20;
+  max-width: calc(100vw - 30px);
+  padding: 12px 16px;
+  border: 3px solid white;
+  border-radius: 30px;
+  background: #ffca28;
+  color: #064878;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 13px;
+  box-shadow: 0 4px 0 #07558b;
+  cursor: pointer;
+}
+
+.boton-musica:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #07558b;
+}
+
+/* PÁGINA */
+.scene {
+  position: relative;
+  z-index: 2;
+  padding: 18px 12px 42px;
+}
+
+/* TARJETA PRINCIPAL */
+.card {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 460px);
+  margin: auto;
+  padding: 15px 15px 0;
+  border: 5px solid #ffca28;
+  border-radius: 28px;
+  background: #fffdf0;
+  box-shadow: 0 10px 0 #07558b65;
+  overflow: hidden;
+}
+
+/* CONTENIDO */
+.contenido {
+  position: relative;
+  z-index: 2;
+}
+
+/* PORTADA */
+.portada {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto 12px;
+  overflow: hidden;
+  border-radius: 16px;
+  line-height: 0;
+}
+
+.portada img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portada-nombre {
+  position: absolute;
+  top: 69%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92%;
+  color: #ffdf24;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(42px, 10vw, 68px);
+  line-height: 1.1;
+  text-align: center;
+  -webkit-text-stroke: 2px #07558b;
+  text-shadow: 3px 4px 0 #07558b, 5px 6px 0 #063657;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ETIQUETA MARINA */
+.label {
+  display: inline-block;
+  max-width: 100%;
+  padding: 7px 10px;
+  border: 2px solid #8bdff7;
+  border-radius: 25px;
+  background: #dff8ff;
+  color: #07558b;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: .4px;
+}
+
+.pineapple {
+  margin: 5px 0;
+  font-size: 32px;
+  animation: flotar 2.5s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+/* TITULARES */
+h1 {
+  margin: 9px 0;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(32px, 8vw, 43px);
+  line-height: 1.08;
+  color: #ffdf24;
+  -webkit-text-stroke: 1.2px #07558b;
+  text-shadow: 3px 4px 0 #07558b;
+}
+
+.name {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(25px, 6vw, 35px);
+  line-height: 1.2;
+  color: #ffce25;
+  -webkit-text-stroke: 1px #07558b;
+  text-shadow: 2px 3px 0 #07558b;
+  overflow-wrap: anywhere;
+}
+
+.note {
+  margin: 8px auto;
+  font-family: 'Bangers', cursive;
+  font-size: 17px;
+  letter-spacing: .2px;
+  line-height: 1.3;
+}
+
+/* NÚMERO 6 */
+.numero-bob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px auto 8px;
+}
+
+.numero-bob img {
+  display: block;
+  width: 125px;
+  max-width: 43%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 4px 3px #07558b25);
+  animation: flotar 2.5s ease-in-out infinite;
+}
+
+/* INFORMACIÓN */
+.details {
+  position: relative;
+  z-index: 2;
+  margin-top: 5px;
+  padding: 7px 9px;
+  border: 2px dashed #6bcbe9;
+  border-radius: 18px;
+  background: #e2f7ff;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.detail {
+  margin: 7px 0;
+  line-height: 1.25;
+}
+
+.detail strong {
+  display: block;
+  color: #087bc1;
+  font-size: 21px;
+}
+
+/* BOTONES */
+.button {
+  display: block;
+  width: 85%;
+  max-width: 285px;
+  margin: 11px auto 0;
+  padding: 11px 8px;
+  border: 0;
+  border-radius: 15px;
+  background: #087bc1;
+  color: white;
+  text-decoration: none;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 14px;
+  line-height: 1.3;
+  box-shadow: 0 4px #07558b;
+  transition: transform .2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.yellow {
+  background: #ffca28;
+  color: #073b65;
+  box-shadow: 0 4px #d99a00;
+}
+
+/* FRASE */
+.frase-final {
+  max-width: 280px;
+  margin: 10px auto 0;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+/* CONFIRMAR ASISTENCIA */
+.confirmar {
+  width: 70%;
+  max-width: 240px;
+  margin: 10px auto 0;
+  padding: 10px 6px;
+  font-size: 12px;
+}
+
+/* ESPACIO PARA LOS PERSONAJES */
+.zona-personajes {
+  position: relative;
+  width: 100%;
+  height: 165px;
+}
+
+/* ESQUINERO GRANDE ABAJO A LA IZQUIERDA */
+.personajes-finales {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 205px;
+  height: 245px;
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.personajes-finales img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom left;
+  background: transparent;
+}
+
+/* PIE DE PÁGINA */
+.footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 18px;
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  letter-spacing: .5px;
+  text-shadow: 1px 2px 4px #03466e;
+}
+
+/* ADAPTACIÓN A CELULARES */
+@media (max-width: 380px) {
+  .scene {
+    padding: 12px 7px 35px;
+  }
+
+  .card {
+    padding: 12px 9px 0;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .portada-nombre {
+    font-size: 36px;
+  }
+
+  .numero-bob img {
+    width: 110px;
+  }
+
+  .note {
+    font-size: 15px;
+  }
+
+  .details {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .detail strong {
+    font-size: 19px;
+  }
+
+  .frase-final {
+    max-width: 245px;
+    font-size: 13px;
+  }
+
+  .confirmar {
+    width: 72%;
+    max-width: 225px;
+    font-size: 11px;
+  }
+
+  .zona-personajes {
+    height: 135px;
+  }
+
+  .personajes-finales {
+    width: 165px;
+    height: 195px;
+  }
+
+  .coral {
+    font-size: 29px;
+  }
+
+  .boton-musica {
+    right: 8px;
+    bottom: 10px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MÚSICA DE FONDO -->
+<audio id="musica" loop preload="auto">
+  <source src="./musica.mp3" type="audio/mpeg">
+</audio>
+
+<button
+  id="boton-musica"
+  class="boton-musica"
+  type="button"
+  aria-pressed="false">
+  🎵 ¡PONER MÚSICA!
+</button>
+
+<!-- DECORACIÓN DEL FONDO -->
+<div class="bubbles" id="bubbles" aria-hidden="true"></div>
+<div class="seafloor" aria-hidden="true"></div>
+<div class="coral left" aria-hidden="true">🪸🌿</div>
+<div class="coral right" aria-hidden="true">🌿🪸</div>
+
+<main class="scene">
+  <section class="card">
+
+    <div class="contenido">
+
+      <!-- PORTADA -->
+      <div class="portada">
+        <img
+          src="./portada-bob.png"
+          alt="Bob Esponja y sus amigos">
+        <div class="portada-nombre">ABDIAS</div>
+      </div>
+
+      <div class="label">
+        🌊 ¡FONDO DE BIKINI TE INVITA! 🌊
+      </div>
+
+      <div class="pineapple">🍍</div>
+
+      <h1>¡ESTÁS<br>INVITADO!</h1>
+
+      <p class="note">¡A celebrar los 6 añitos de!</p>
+
+      <div class="name">ABDÍAS SABALLOS</div>
+
+      <!-- NÚMERO 6 -->
+      <div class="numero-bob">
+        <img src="./numero-6.png" alt="Número 6 amarillo">
+      </div>
+
+      <p class="note">
+        ¡Prepárate para una aventura bajo el mar!
+      </p>
+
+      <!-- DATOS DE LA FIESTA -->
+      <div class="details">
+
+        <div class="detail">
+          📅
+          <strong>FECHA</strong>
+          15 de octubre de 2026
+        </div>
+
+        <div class="detail">
+          ⏰
+          <strong>HORA</strong>
+          3:00 p. m.
+        </div>
+
+        <div class="detail">
+          📍
+          <strong>LUGAR</strong>
+          ¡Próximamente!
+        </div>
+
+        <a
+          class="button yellow"
+          href="https://www.google.com/maps"
+          target="_blank"
+          rel="noopener">
+          📍 VER UBICACIÓN
+        </a>
+
+      </div>
+
+      <p class="note frase-final">
+        🫧 ¡Ven con muchas ganas de jugar, reír y celebrar! 🐚
+      </p>
+
+      <a
+        class="button confirmar"
+        href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Abd%C3%ADas%20Saballos%2C%20el%2015%20de%20octubre%20a%20las%203%20p.%20m."
+        target="_blank"
+        rel="noopener">
+        💌 CONFIRMAR ASISTENCIA
+      </a>
+
+    </div>
+
+    <!-- PERSONAJES EN LA ESQUINA INFERIOR IZQUIERDA -->
+    <div class="zona-personajes">
+      <div class="personajes-finales" aria-hidden="true">
+        <img src="./personajes-fondo-bikini.png" alt="">
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer">🫧 ¡TE ESPERAMOS! 🫧</div>
+</main>
+
+<script>
+/* CONTROL DE MÚSICA */
+const musica = document.getElementById("musica");
+const botonMusica = document.getElementById("boton-musica");
+
+botonMusica.addEventListener("click", async () => {
+  if (musica.paused) {
+    try {
+      await musica.play();
+      botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
+      botonMusica.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      botonMusica.textContent = "🎵 INTENTAR DE NUEVO";
+      console.error("No se pudo reproducir la música:", error);
+    }
+  } else {
+    musica.pause();
+    botonMusica.textContent = "🎵 ¡PONER MÚSICA!";
+    botonMusica.setAttribute("aria-pressed", "false");
+  }
+});
+
+/* CREAR BURBUJAS */
+const contenedor = document.getElementById("bubbles");
+
+for (let i = 0; i < 26; i++) {
+  const burbuja = document.createElement("div");
+  burbuja.className = "bubble";
+
+  const size = 12 + Math.random() * 30;
+
+  burbuja.style.width = size + "px";
+  burbuja.style.height = size + "px";
+  burbuja.style.left = Math.random() * 100 + "%";
+  burbuja.style.animationDuration =
+    (7 + Math.random() * 9) + "s";
+  burbuja.style.animationDelay =
+    (-Math.random() * 16) + "s";
+
+  contenedor.appendChild(burbuja);
+}
+</script>
+
+</body>
+</html>
