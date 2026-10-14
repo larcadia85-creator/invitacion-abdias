@@ -1,574 +1,323 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#04bce8">
-  <title>¡Abdías cumple 6 años!</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --azul: #05bce9;
-      --azul-oscuro: #07518b;
-      --amarillo: #ffe52e;
-      --naranja: #ff811f;
-      --crema: #fffdf0;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      font-family: "Nunito", sans-serif;
-      color: var(--azul-oscuro);
-      background: linear-gradient(
-        180deg,
-        #04c6ee 0%,
-        #08a9e0 50%,
-        #0878b9 100%
-      );
-    }
-
-    .burbujas {
-      position: fixed;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .burbuja {
-      position: absolute;
-      bottom: -70px;
-      border: 2px solid rgba(255,255,255,.45);
-      border-radius: 50%;
-      background: rgba(255,255,255,.08);
-      animation: flotar 14s linear infinite;
-    }
-
-    .burbuja:nth-child(1) {
-      left: 6%;
-      width: 24px;
-      height: 24px;
-    }
-
-    .burbuja:nth-child(2) {
-      left: 21%;
-      width: 44px;
-      height: 44px;
-      animation-delay: 2s;
-      animation-duration: 17s;
-    }
-
-    .burbuja:nth-child(3) {
-      left: 43%;
-      width: 18px;
-      height: 18px;
-      animation-delay: 4s;
-      animation-duration: 11s;
-    }
-
-    .burbuja:nth-child(4) {
-      left: 70%;
-      width: 34px;
-      height: 34px;
-      animation-delay: 1s;
-      animation-duration: 15s;
-    }
-
-    .burbuja:nth-child(5) {
-      left: 89%;
-      width: 47px;
-      height: 47px;
-      animation-delay: 3s;
-      animation-duration: 18s;
-    }
-
-    @keyframes flotar {
-      0% {
-        transform: translateY(0);
-        opacity: 0;
-      }
-      15% {
-        opacity: .8;
-      }
-      100% {
-        transform: translateY(-115vh) translateX(20px);
-        opacity: 0;
-      }
-    }
-
-    .pagina {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      padding: 24px 12px 145px;
-    }
-
-    .tarjeta {
-      width: 100%;
-      max-width: 570px;
-      overflow: hidden;
-      align-self: flex-start;
-      border: 6px solid var(--amarillo);
-      border-radius: 28px;
-      background: var(--crema);
-      box-shadow: 0 12px 0 rgba(0,58,107,.2),
-                  0 20px 45px rgba(0,43,90,.18);
-    }
-
-    .portada {
-      position: relative;
-      height: 270px;
-      overflow: hidden;
-      background: linear-gradient(145deg, #17d3ee, #0879b8);
-    }
-
-    .imagen-portada {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .portada::after {
-      content: "";
-      position: absolute;
-      inset: 40% 0 0;
-      background: linear-gradient(transparent, rgba(0,42,83,.55));
-      pointer-events: none;
-    }
-
-    .nombre-portada {
-      position: absolute;
-      z-index: 1;
-      right: 6px;
-      bottom: 12px;
-      left: 6px;
-      margin: 0;
-      color: #fff;
-      font-family: "Luckiest Guy", cursive;
-      font-size: clamp(42px, 10vw, 64px);
-      line-height: 1;
-      text-align: center;
-      -webkit-text-stroke: 1.5px var(--azul-oscuro);
-      text-shadow: 3px 4px 0 var(--azul-oscuro);
-    }
-
-    .contenido {
-      padding: 22px 22px 28px;
-      text-align: center;
-    }
-
-    .etiqueta {
-      display: inline-block;
-      padding: 10px 15px;
-      border: 2px solid var(--azul-oscuro);
-      border-radius: 28px;
-      background: var(--amarillo);
-      color: var(--azul-oscuro);
-      font-family: "Luckiest Guy", cursive;
-      font-size: 15px;
-      transform: rotate(-1deg);
-    }
-
-    h1 {
-      margin: 22px 0 10px;
-      color: var(--naranja);
-      font-family: "Luckiest Guy", cursive;
-      font-size: clamp(32px, 7.5vw, 47px);
-      line-height: 1.12;
-      -webkit-text-stroke: 1px var(--azul-oscuro);
-      text-shadow: 3px 4px 0 var(--amarillo);
-    }
-
-    .subtitulo {
-      margin: 12px 0 4px;
-      color: #0789c0;
-      font-family: "Bangers", cursive;
-      font-size: 27px;
-      letter-spacing: 1.5px;
-    }
-
-    .nombre {
-      margin: 4px 0 0;
-      color: var(--naranja);
-      font-family: "Luckiest Guy", cursive;
-      font-size: clamp(29px, 7.5vw, 43px);
-      line-height: 1.12;
-      overflow-wrap: anywhere;
-      text-shadow: 2px 3px 0 var(--amarillo);
-    }
-
-    .numero {
-      display: block;
-      width: 130px;
-      max-width: 42%;
-      height: 118px;
-      margin: 8px auto 5px;
-      object-fit: contain;
-    }
-
-    .mensaje {
-      max-width: 390px;
-      margin: 13px auto 20px;
-      color: #32617d;
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.65;
-    }
-
-    .separador {
-      width: 78%;
-      height: 3px;
-      margin: 21px auto;
-      background: repeating-linear-gradient(
-        90deg,
-        #ffbd24 0 12px,
-        transparent 12px 19px
-      );
-      border-radius: 10px;
-    }
-
-    .datos {
-      display: grid;
-      gap: 13px;
-      margin: 20px 0;
-      padding: 16px;
-      border: 2px dashed #12a9d8;
-      border-radius: 20px;
-      background: #e7faff;
-      text-align: left;
-    }
-
-    .dato {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .icono {
-      display: flex;
-      flex-shrink: 0;
-      align-items: center;
-      justify-content: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 14px;
-      background: var(--amarillo);
-      font-size: 22px;
-    }
-
-    .dato-texto {
-      min-width: 0;
-    }
-
-    .dato-texto strong {
-      display: block;
-      margin-bottom: 2px;
-      color: #087db9;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .dato-texto span {
-      display: block;
-      color: #174c70;
-      font-size: 15px;
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
-    .pendiente {
-      color: #d16a13 !important;
-      font-size: 14px !important;
-    }
-
-    .instruccion {
-      margin: 20px 0 13px;
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .boton-whatsapp {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      width: 100%;
-      min-height: 54px;
-      padding: 13px 15px;
-      border: 3px solid #168d42;
-      border-radius: 17px;
-      background: #25d366;
-      color: #063d23;
-      font-family: "Luckiest Guy", cursive;
-      font-size: 17px;
-      text-align: center;
-      text-decoration: none;
-      box-shadow: 0 5px 0 #168d42;
-    }
-
-    .pie {
-      margin: 24px 0 0;
-      color: #0789c0;
-      font-family: "Bangers", cursive;
-      font-size: 23px;
-      letter-spacing: 1px;
-    }
-
-    .personajes {
-      position: fixed;
-      z-index: 2;
-      bottom: -4px;
-      left: 0;
-      width: min(180px, 29vw);
-      max-height: 180px;
-      object-fit: contain;
-      object-position: left bottom;
-      pointer-events: none;
-      filter: drop-shadow(0 3px 4px rgba(0,55,100,.2));
-    }
-
-    .control-musica {
-      position: fixed;
-      z-index: 5;
-      right: 12px;
-      bottom: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .boton-musica {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      min-height: 46px;
-      max-width: calc(100vw - 24px);
-      padding: 11px 15px;
-      border: 3px solid var(--azul-oscuro);
-      border-radius: 30px;
-      background: var(--amarillo);
-      color: var(--azul-oscuro);
-      font-family: "Luckiest Guy", cursive;
-      font-size: 12px;
-      box-shadow: 0 4px 0 var(--azul-oscuro);
-      cursor: pointer;
-    }
-
-    .nota-musica {
-      margin: 0;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      text-align: center;
-      text-shadow: 0 1px 4px var(--azul-oscuro);
-    }
-
-    @media (max-width: 480px) {
-      .pagina {
-        padding: 12px 8px 120px;
-      }
-
-      .tarjeta {
-        border-width: 4px;
-        border-radius: 22px;
-      }
-
-      .portada {
-        height: 225px;
-      }
-
-      .contenido {
-        padding: 18px 13px 24px;
-      }
-
-      .etiqueta {
-        font-size: 13px;
-      }
-
-      .datos {
-        padding: 12px;
-      }
-
-      .personajes {
-        width: 27vw;
-        max-height: 115px;
-      }
-
-      .control-musica {
-        right: 8px;
-        bottom: 9px;
-      }
-
-      .boton-musica {
-        min-height: 43px;
-        padding: 9px 12px;
-        font-size: 11px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .burbuja {
-        animation: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="burbujas" aria-hidden="true">
-    <span class="burbuja"></span>
-    <span class="burbuja"></span>
-    <span class="burbuja"></span>
-    <span class="burbuja"></span>
-    <span class="burbuja"></span>
-  </div>
-
-  <audio id="musica" autoplay loop preload="auto" playsinline>
-    <source src="./musica.mp3" type="audio/mpeg">
-  </audio>
-
-  <main class="pagina">
-    <article class="tarjeta">
-      <header class="portada">
-        <img
-          class="imagen-portada"
-          src="./portada-bob.png"
-          alt="Personajes de Fondo de Bikini"
-        >
-        <p class="nombre-portada">¡ABDÍAS!</p>
-      </header>
-
-      <section class="contenido">
-        <div class="etiqueta">🌊 ¡UNA AVENTURA SUBMARINA! 🌊</div>
-
-        <h1>¡ESTÁS INVITADO!</h1>
-
-        <p class="subtitulo">A MI CUMPLEAÑOS NÚMERO</p>
-
-        <h2 class="nombre">ABDÍAS SABALLOS</h2>
-
-        <img
-          class="numero"
-          src="./numero-6.png"
-          alt="Número 6"
-        >
-
-        <p class="mensaje">
-          ¡Prepárate para una aventura en Fondo de Bikini!
-          Quiero celebrar este día tan especial contigo.
-          ¡No faltes, será muy divertido! 🫧
-        </p>
-
-        <div class="separador"></div>
-
-        <div class="datos">
-          <div class="dato">
-            <div class="icono">📅</div>
-            <div class="dato-texto">
-              <strong>Fecha</strong>
-              <span>Domingo, 8 de noviembre de 2026</span>
-            </div>
-          </div>
-
-          <div class="dato">
-            <div class="icono">⏰</div>
-            <div class="dato-texto">
-              <strong>Hora</strong>
-              <span>3:00 p. m.</span>
-            </div>
-          </div>
-
-          <div class="dato">
-            <div class="icono">📍</div>
-            <div class="dato-texto">
-              <strong>Lugar</strong>
-              <span class="pendiente">
-                ¡Próximamente te diremos dónde!
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <p class="instruccion">
-          🫧 ¡Confirma tu asistencia y acompáñame! 🫧
-        </p>
-
-        <a
-          class="boton-whatsapp"
-          href="https://wa.me/50585747085?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Abd%C3%ADas"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          💚 CONFIRMAR POR WHATSAPP
-        </a>
-
-        <p class="pie">¡TE ESPERO EN FONDO DE BIKINI! ⭐</p>
-      </section>
-    </article>
-  </main>
-
-  <img
-    class="personajes"
-    src="./personajes-fondo-bikini.png"
-    alt=""
-    aria-hidden="true"
-  >
-
-  <div class="control-musica">
-    <button id="boton-musica" class="boton-musica" type="button">
-      🎵 ¡PONER MÚSICA!
-    </button>
-    <p class="nota-musica">Toca para escuchar 🎶</p>
-  </div>
-
-  <script>
-    const musica = document.getElementById("musica");
-    const botonMusica = document.getElementById("boton-musica");
-
-    musica.volume = 0.7;
-
-    async function reproducirMusica() {
-      try {
-        await musica.play();
-        botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
-      } catch (error) {
-        console.log("El navegador requiere interacción para reproducir audio.");
-        botonMusica.textContent = "🎵 TOCA PARA ESCUCHAR";
-      }
-    }
-
-    window.addEventListener("load", reproducirMusica);
-
-    botonMusica.addEventListener("click", async function () {
-      if (musica.paused) {
-        await reproducirMusica();
-      } else {
-        musica.pause();
-        botonMusica.textContent = "🎵 ¡PONER MÚSICA!";
-      }
-    });
-
-    musica.addEventListener("error", function () {
-      botonMusica.textContent = "🎵 REVISAR ARCHIVO";
-      console.error("No se pudo cargar musica.mp3");
-    });
-  </script>
-</body>
-</html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0788c9">
+
+<title>¡Abdías cumple 6 años!</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: #073b65;
+  background: linear-gradient(
+    180deg,
+    #05c7ed 0%,
+    #0788c9 60%,
+    #f5d99b 100%
+  );
+  overflow-x: hidden;
+}
+
+/* BURBUJAS */
+.bubbles {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -70px;
+  border: 2px solid #ffffffbb;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 25%,
+    #fff,
+    #b9f4ff55 55%,
+    #ffffff22
+  );
+  box-shadow: inset -3px -4px 8px #ffffff55;
+  animation: subir linear infinite;
+}
+
+@keyframes subir {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: .85; }
+  90% { opacity: .75; }
+  100% {
+    transform: translateY(-120vh) translateX(35px);
+    opacity: 0;
+  }
+}
+
+/* FONDO DE ARENA */
+.seafloor {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background: linear-gradient(#ffe8ae, #e8bb6d);
+  clip-path: polygon(
+    0 35%, 20% 10%, 40% 35%, 60% 8%,
+    80% 30%, 100% 12%, 100% 100%, 0 100%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.coral {
+  position: fixed;
+  bottom: 3px;
+  font-size: 32px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.coral.left { left: 5px; }
+.coral.right { right: 5px; }
+
+/* BOTÓN DE MÚSICA */
+.boton-musica {
+  position: fixed;
+  right: 12px;
+  bottom: 14px;
+  z-index: 20;
+  max-width: calc(100vw - 24px);
+  padding: 12px 16px;
+  border: 3px solid white;
+  border-radius: 30px;
+  background: #ffca28;
+  color: #064878;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 13px;
+  box-shadow: 0 4px 0 #07558b;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.boton-musica:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #07558b;
+}
+
+/* PÁGINA */
+.scene {
+  position: relative;
+  z-index: 2;
+  padding: 18px 12px 42px;
+}
+
+/* TARJETA */
+.card {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 570px);
+  margin: auto;
+  padding: 15px 15px 0;
+  border: 5px solid #ffca28;
+  border-radius: 28px;
+  background: #fffdf0;
+  box-shadow: 0 10px 0 #07558b65;
+  overflow: hidden;
+}
+
+/* CONTENIDO */
+.contenido {
+  position: relative;
+  z-index: 2;
+}
+
+/* PORTADA */
+.portada {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 12px;
+  overflow: hidden;
+  border-radius: 16px;
+  line-height: 0;
+}
+
+.portada img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portada-nombre {
+  position: absolute;
+  top: 69%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  color: #ffdf24;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(38px, 10vw, 66px);
+  line-height: 1.1;
+  -webkit-text-stroke: 2px #07558b;
+  text-shadow: 3px 4px 0 #07558b, 5px 6px 0 #063657;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ETIQUETA */
+.label {
+  display: inline-block;
+  max-width: 100%;
+  padding: 7px 10px;
+  border: 2px solid #8bdff7;
+  border-radius: 25px;
+  background: #dff8ff;
+  color: #07558b;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+}
+
+.pineapple {
+  margin: 5px 0;
+  font-size: 32px;
+  animation: flotar 2.5s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+/* TITULARES */
+h1 {
+  margin: 9px 0;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(32px, 8vw, 43px);
+  line-height: 1.08;
+  color: #ffdf24;
+  -webkit-text-stroke: 1.2px #07558b;
+  text-shadow: 3px 4px 0 #07558b;
+}
+
+.name {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(25px, 6vw, 35px);
+  line-height: 1.2;
+  color: #ffce25;
+  -webkit-text-stroke: 1px #07558b;
+  text-shadow: 2px 3px 0 #07558b;
+  overflow-wrap: anywhere;
+}
+
+.note {
+  margin: 8px auto;
+  font-family: 'Bangers', cursive;
+  font-size: 17px;
+  letter-spacing: .2px;
+  line-height: 1.3;
+}
+
+/* NÚMERO 6 */
+.numero-bob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px auto 8px;
+}
+
+.numero-bob img {
+  display: block;
+  width: 125px;
+  max-width: 43%;
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 4px 3px #07558b25);
+  animation: flotar 2.5s ease-in-out infinite;
+}
+
+/* INFORMACIÓN */
+.details {
+  position: relative;
+  z-index: 2;
+  margin-top: 5px;
+  padding: 7px 9px;
+  border: 2px dashed #6bcbe9;
+  border-radius: 18px;
+  background: #e2f7ff;
+  font-family: 'Bangers', cursive;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.detail {
+  margin: 7px 0;
+  line-height: 1.25;
+}
+
+.detail strong {
+  display: block;
+  color: #087bc1;
+  font-size: 21px;
+}
+
+/* BOTONES */
+.button {
+  display: block;
+  width: 85%;
+  max-width: 285px;
+  margin: 11px auto 0;
+  padding: 11px 8px;
+  border: 0;
+  border-radius: 15px;
+  background: #087bc1;
+  color: white;
+  text-decoration: none;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 14px;
+  line-height: 1.3;
+  box-shadow: 0 4px #07558b;
+  transition: transform .2s;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button.yellow {
+  background: #ffca28;
+  color: #073b65;
+  box-shadow: 0 4px #d99a00;
+}
+
+/* MENSAJE */
+.frase-final {
+  max-width: 320px;
+  margin: 10px auto 0;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+/* CONFIRMACIÓN */
+.confirmar {
+  width: 70%;
+  max-width: 240px;
+  margin: 10px auto 0;
+  padding:
+  }
