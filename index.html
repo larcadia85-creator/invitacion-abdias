@@ -1,0 +1,664 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>¡Abdías cumple 6 años!</title>
+
+  <meta
+    name="description"
+    content="¡Estás invitado al cumpleaños número 6 de Abdías Saballos! Una aventura en Fondo de Bikini."
+  >
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Nunito:wght@400;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      --azul: #05bce9;
+      --azul-oscuro: #087db9;
+      --amarillo: #ffe52e;
+      --naranja: #ff8b28;
+      --blanco: #fffdf0;
+      --verde: #62d94c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Nunito", sans-serif;
+      color: #07518b;
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255, 255, 255, 0.45) 0 3px,
+          transparent 4px
+        ),
+        linear-gradient(
+          180deg,
+          #02c9f5 0%,
+          #08aee6 45%,
+          #0879bd 100%
+        );
+      background-attachment: fixed;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .burbujas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .burbuja {
+      position: absolute;
+      bottom: -100px;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      animation: subir linear infinite;
+    }
+
+    .burbuja:nth-child(1) {
+      left: 5%;
+      width: 24px;
+      height: 24px;
+      animation-duration: 12s;
+    }
+
+    .burbuja:nth-child(2) {
+      left: 19%;
+      width: 44px;
+      height: 44px;
+      animation-duration: 17s;
+      animation-delay: 2s;
+    }
+
+    .burbuja:nth-child(3) {
+      left: 36%;
+      width: 17px;
+      height: 17px;
+      animation-duration: 10s;
+      animation-delay: 4s;
+    }
+
+    .burbuja:nth-child(4) {
+      left: 60%;
+      width: 34px;
+      height: 34px;
+      animation-duration: 14s;
+      animation-delay: 1s;
+    }
+
+    .burbuja:nth-child(5) {
+      left: 78%;
+      width: 23px;
+      height: 23px;
+      animation-duration: 11s;
+      animation-delay: 3s;
+    }
+
+    .burbuja:nth-child(6) {
+      left: 92%;
+      width: 50px;
+      height: 50px;
+      animation-duration: 18s;
+      animation-delay: 5s;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      85% {
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: translateY(-120vh) translateX(30px);
+        opacity: 0;
+      }
+    }
+
+    .pagina {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 14px 145px;
+    }
+
+    .tarjeta {
+      position: relative;
+      width: 100%;
+      max-width: 570px;
+      overflow: hidden;
+      border: 6px solid var(--amarillo);
+      border-radius: 28px;
+      background: var(--blanco);
+      box-shadow:
+        0 12px 0 rgba(4, 83, 142, 0.3),
+        0 22px 50px rgba(0, 45, 100, 0.25);
+    }
+
+    .portada {
+      position: relative;
+      width: 100%;
+      height: 270px;
+      overflow: hidden;
+      background: linear-gradient(145deg, #19d4f0, #087cb7);
+    }
+
+    .imagen-portada {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .portada::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 43, 89, 0.02) 35%,
+        rgba(0, 43, 89, 0.55) 100%
+      );
+      pointer-events: none;
+    }
+
+    .texto-portada {
+      position: absolute;
+      z-index: 1;
+      left: 10px;
+      right: 10px;
+      bottom: 13px;
+      text-align: center;
+      color: white;
+      font-family: "Luckiest Guy", cursive;
+      font-size: clamp(42px, 10vw, 67px);
+      line-height: 1;
+      letter-spacing: 3px;
+      -webkit-text-stroke: 1.5px #07518b;
+      text-shadow:
+        3px 4px 0 #07518b,
+        0 0 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .contenido {
+      position: relative;
+      padding: 22px 23px 30px;
+      text-align: center;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      padding: 8px 18px;
+      border: 2px solid #07518b;
+      border-radius: 30px;
+      background: var(--amarillo);
+      color: #07518b;
+      font-family: "Luckiest Guy", cursive;
+      font-size: 18px;
+      transform: rotate(-2deg);
+    }
+
+    h1 {
+      margin: 20px 0 5px;
+      color: #ff7b19;
+      font-family: "Luckiest Guy", cursive;
+      font-size: clamp(32px, 8vw, 49px);
+      line-height: 1.05;
+      letter-spacing: 1px;
+      -webkit-text-stroke: 1px #07518b;
+      text-shadow: 3px 4px 0 var(--amarillo);
+    }
+
+    .subtitulo {
+      margin: 12px 0 5px;
+      color: #087db9;
+      font-family: "Bangers", cursive;
+      font-size: 29px;
+      letter-spacing: 2px;
+    }
+
+    .nombre {
+      margin: 5px 0 0;
+      color: #ff821e;
+      font-family: "Luckiest Guy", cursive;
+      font-size: clamp(30px, 8vw, 43px);
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+      text-shadow: 2px 3px 0 var(--amarillo);
+    }
+
+    .numero {
+      display: block;
+      width: 125px;
+      max-width: 38%;
+      height: 112px;
+      margin: 5px auto 10px;
+      object-fit: contain;
+    }
+
+    .mensaje {
+      max-width: 390px;
+      margin: 12px auto 20px;
+      color: #32617d;
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .separador {
+      width: 78%;
+      height: 3px;
+      margin: 20px auto;
+      border-radius: 10px;
+      background: repeating-linear-gradient(
+        90deg,
+        #ffbd24 0 12px,
+        transparent 12px 19px
+      );
+    }
+
+    .datos {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0;
+      padding: 17px;
+      border: 2px dashed #12a9d8;
+      border-radius: 20px;
+      background: #e7faff;
+      text-align: left;
+    }
+
+    .dato {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icono {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: var(--amarillo);
+      font-size: 23px;
+    }
+
+    .dato-texto {
+      min-width: 0;
+    }
+
+    .dato-texto strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #087db9;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .dato-texto span {
+      display: block;
+      color: #174c70;
+      font-size: 16px;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+
+    .ubicacion-pendiente {
+      color: #d16a13 !important;
+      font-size: 14px !important;
+    }
+
+    .instruccion {
+      margin: 20px 0 13px;
+      color: #07518b;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .boton-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 55px;
+      padding: 14px 18px;
+      border: 3px solid #168d42;
+      border-radius: 17px;
+      background: #25d366;
+      color: #063d23;
+      font-family: "Luckiest Guy", cursive;
+      font-size: 18px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 5px 0 #168d42;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .boton-whatsapp:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #168d42;
+    }
+
+    .pie {
+      margin-top: 23px;
+      color: #087db9;
+      font-family: "Bangers", cursive;
+      font-size: 23px;
+      letter-spacing: 1px;
+    }
+
+    .personajes {
+      position: fixed;
+      z-index: 2;
+      bottom: -5px;
+      left: 8px;
+      width: min(220px, 37vw);
+      max-height: 190px;
+      object-fit: contain;
+      object-position: left bottom;
+      pointer-events: none;
+      filter: drop-shadow(0 3px 4px rgba(0, 55, 100, 0.2));
+    }
+
+    .musica-control {
+      position: fixed;
+      z-index: 5;
+      right: 14px;
+      bottom: 17px;
+    }
+
+    .boton-musica {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      min-height: 48px;
+      padding: 12px 16px;
+      border: 3px solid #07518b;
+      border-radius: 30px;
+      background: var(--amarillo);
+      color: #07518b;
+      font-family: "Luckiest Guy", cursive;
+      font-size: 14px;
+      box-shadow: 0 4px 0 #07518b;
+      cursor: pointer;
+    }
+
+    .boton-musica:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #07518b;
+    }
+
+    .nota {
+      margin: 9px 0 0;
+      color: white;
+      font-size: 11px;
+      text-align: center;
+      text-shadow: 0 1px 4px #07518b;
+    }
+
+    @media (max-width: 480px) {
+      .pagina {
+        padding: 13px 9px 120px;
+      }
+
+      .tarjeta {
+        border-width: 4px;
+        border-radius: 22px;
+      }
+
+      .portada {
+        height: 220px;
+      }
+
+      .contenido {
+        padding: 19px 15px 25px;
+      }
+
+      .datos {
+        padding: 13px;
+      }
+
+      .personajes {
+        width: 31vw;
+        max-height: 125px;
+      }
+
+      .musica-control {
+        right: 9px;
+        bottom: 12px;
+      }
+
+      .boton-musica {
+        min-height: 44px;
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .burbuja {
+        animation: none;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Burbujas animadas -->
+  <div class="burbujas" aria-hidden="true">
+    <span class="burbuja"></span>
+    <span class="burbuja"></span>
+    <span class="burbuja"></span>
+    <span class="burbuja"></span>
+    <span class="burbuja"></span>
+    <span class="burbuja"></span>
+  </div>
+
+  <!-- Música: el archivo debe llamarse musica.mp3 -->
+  <audio id="musica" loop preload="auto" playsinline>
+    <source src="./musica.mp3" type="audio/mpeg">
+    Tu navegador no puede reproducir este audio.
+  </audio>
+
+  <main class="pagina">
+    <article class="tarjeta">
+
+      <!-- Imagen principal -->
+      <header class="portada">
+        <img
+          class="imagen-portada"
+          src="./portada-bob.png"
+          alt="Decoración de Fondo de Bikini"
+        >
+
+        <div class="texto-portada">¡ABDÍAS!</div>
+      </header>
+
+      <section class="contenido">
+        <div class="etiqueta">🌊 ¡UNA AVENTURA SUBMARINA! 🌊</div>
+
+        <h1>¡ESTÁS INVITADO!</h1>
+
+        <p class="subtitulo">A MI CUMPLEAÑOS NÚMERO</p>
+
+        <h2 class="nombre">ABDÍAS SABALLOS</h2>
+
+        <img
+          class="numero"
+          src="./numero-6.png"
+          alt="Número 6"
+        >
+
+        <p class="mensaje">
+          ¡Prepárate para una aventura en Fondo de Bikini!
+          Quiero celebrar este día tan especial contigo.
+          ¡No faltes, será muy divertido! 🫧
+        </p>
+
+        <div class="separador"></div>
+
+        <!-- Información de la fiesta -->
+        <div class="datos">
+
+          <div class="dato">
+            <div class="icono" aria-hidden="true">📅</div>
+            <div class="dato-texto">
+              <strong>Fecha</strong>
+              <span>Jueves, 15 de octubre de 2026</span>
+            </div>
+          </div>
+
+          <div class="dato">
+            <div class="icono" aria-hidden="true">⏰</div>
+            <div class="dato-texto">
+              <strong>Hora</strong>
+              <span>3:00 p. m.</span>
+            </div>
+          </div>
+
+          <div class="dato">
+            <div class="icono" aria-hidden="true">📍</div>
+            <div class="dato-texto">
+              <strong>Lugar</strong>
+              <span class="ubicacion-pendiente">
+                ¡Próximamente te diremos dónde!
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <p class="instruccion">
+          🫧 ¡Confirma tu asistencia y acompáñame! 🫧
+        </p>
+
+        <!-- IMPORTANTE: cambia el número por tu WhatsApp -->
+        <a
+          class="boton-whatsapp"
+          href="https://wa.me/505XXXXXXXX?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Abd%C3%ADas"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span aria-hidden="true">💚</span>
+          CONFIRMAR POR WHATSAPP
+        </a>
+
+        <p class="pie">¡TE ESPERO EN FONDO DE BIKINI! 🧽⭐</p>
+      </section>
+    </article>
+  </main>
+
+  <!-- Personajes decorativos -->
+  <img
+    class="personajes"
+    src="./personajes-fondo-bikini.png"
+    alt=""
+    aria-hidden="true"
+  >
+
+  <!-- Control de música -->
+  <div class="musica-control">
+    <button
+      id="boton-musica"
+      class="boton-musica"
+      type="button"
+      aria-pressed="false"
+    >
+      🎵 ¡PONER MÚSICA!
+    </button>
+    <p class="nota">Toca para escuchar 🎶</p>
+  </div>
+
+  
+<script>
+  const musica = document.getElementById("musica");
+  const botonMusica = document.getElementById("boton-musica");
+
+  musica.volume = 0.7;
+
+  async function reproducirMusica() {
+    botonMusica.textContent = "⏳ CARGANDO MÚSICA...";
+
+    try {
+      await musica.play();
+      botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
+      botonMusica.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      console.log("El navegador bloqueó o no pudo iniciar la música:", error);
+      botonMusica.textContent = "🎵 TOCA PARA ESCUCHAR";
+      botonMusica.setAttribute("aria-pressed", "false");
+    }
+  }
+
+  // Intentar iniciar la música al abrir la invitación
+  window.addEventListener("load", function () {
+    reproducirMusica();
+  });
+
+  // Si no pudo iniciarse automáticamente, permitir activarla con un toque
+  botonMusica.addEventListener("click", async function () {
+    if (musica.paused) {
+      await reproducirMusica();
+    } else {
+      musica.pause();
+    }
+  });
+
+  musica.addEventListener("play", function () {
+    botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
+    botonMusica.setAttribute("aria-pressed", "true");
+  });
+
+  musica.addEventListener("pause", function () {
+    botonMusica.textContent = "🎵 ¡PONER MÚSICA!";
+    botonMusica.setAttribute("aria-pressed", "false");
+  });
+</script>
+</body>
+</html>
