@@ -444,7 +444,7 @@ h1 {
 
 <!-- MÚSICA: SE ACTIVA CON UN TOQUE -->
 <audio id="musica" loop preload="auto" playsinline webkit-playsinline>
-  <source src="./m%C3%BAsica.mp3" type="audio/mpeg">
+  <source src="./musica.mp3" type="audio/mpeg">
   Tu navegador no puede reproducir este audio.
 </audio>
 
@@ -577,16 +577,13 @@ botonMusica.addEventListener("click", async function () {
       botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
       botonMusica.setAttribute("aria-pressed", "true");
     } catch (error) {
-      console.error("No se pudo reproducir el audio:", error);
-
-      botonMusica.textContent = "🎵 INTENTAR DE NUEVO";
-
-      alert(
-        "No se pudo reproducir la música. " +
-        "Comprueba tu conexión a internet y que el archivo musica.mp3 " +
-        "esté correctamente subido a GitHub."
-      );
-    }
+  console.error("Error de audio:", error);
+  botonMusica.textContent = "🎵 INTENTAR DE NUEVO";
+  alert(
+    "Error de música: " + error.name +
+    "\nDetalle: " + error.message
+  );
+}
   } else {
     musica.pause();
 
