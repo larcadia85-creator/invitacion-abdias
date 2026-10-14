@@ -130,7 +130,7 @@ body {
 .card {
   position: relative;
   isolation: isolate;
-  width: min(100%, 570px);
+  width: min(100%, 460px);
   margin: auto;
   padding: 15px 15px 0;
   border: 5px solid #ffca28;
@@ -140,7 +140,7 @@ body {
   overflow: hidden;
 }
 
-/* CONTENIDO */
+/* CONTENIDO SOBRE LOS PERSONAJES */
 .contenido {
   position: relative;
   z-index: 2;
@@ -150,7 +150,7 @@ body {
 .portada {
   position: relative;
   width: 100%;
-  max-width: 500px;
+  max-width: 390px;
   margin: 0 auto 12px;
   overflow: hidden;
   border-radius: 16px;
@@ -252,7 +252,7 @@ h1 {
   animation: flotar 2.5s ease-in-out infinite;
 }
 
-/* INFORMACIÓN */
+/* CAJA DE INFORMACIÓN */
 .details {
   position: relative;
   z-index: 2;
@@ -308,16 +308,312 @@ h1 {
 
 /* MENSAJE */
 .frase-final {
-  max-width: 320px;
+  max-width: 280px;
   margin: 10px auto 0;
   font-size: 15px;
   line-height: 1.3;
 }
 
-/* CONFIRMACIÓN */
+/* CONFIRMAR ASISTENCIA */
 .confirmar {
   width: 70%;
   max-width: 240px;
   margin: 10px auto 0;
-  padding:
+  padding: 10px 6px;
+  font-size: 12px;
+}
+
+/* ESPACIO PARA LOS PERSONAJES */
+.zona-personajes {
+  position: relative;
+  width: 100%;
+  height: 165px;
+}
+
+/* ESQUINERO INFERIOR IZQUIERDO */
+.personajes-finales {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 205px;
+  height: 245px;
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.personajes-finales img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom left;
+  background: transparent;
+}
+
+/* PIE */
+.footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 18px;
+  color: white;
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+  letter-spacing: .5px;
+  text-shadow: 1px 2px 4px #03466e;
+}
+
+/* MÓVILES */
+@media (max-width: 380px) {
+  .scene {
+    padding: 12px 7px 35px;
   }
+
+  .card {
+    padding: 12px 9px 0;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .portada-nombre {
+    font-size: 36px;
+  }
+
+  .numero-bob img {
+    width: 110px;
+  }
+
+  .note {
+    font-size: 15px;
+  }
+
+  .details {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .detail strong {
+    font-size: 19px;
+  }
+
+  .frase-final {
+    max-width: 245px;
+    font-size: 13px;
+  }
+
+  .confirmar {
+    width: 72%;
+    max-width: 225px;
+    font-size: 11px;
+  }
+
+  .zona-personajes {
+    height: 135px;
+  }
+
+  .personajes-finales {
+    width: 165px;
+    height: 195px;
+  }
+
+  .boton-musica {
+    right: 8px;
+    bottom: 10px;
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MÚSICA: SE ACTIVA CON UN TOQUE -->
+<audio id="musica" loop preload="auto" playsinline webkit-playsinline>
+  <source src="./m%C3%BAsica.mp3" type="audio/mpeg">
+  Tu navegador no puede reproducir este audio.
+</audio>
+
+<button
+  id="boton-musica"
+  class="boton-musica"
+  type="button"
+  aria-pressed="false">
+  🎵 ¡PONER MÚSICA!
+</button>
+
+<!-- FONDO ANIMADO -->
+<div class="bubbles" id="bubbles" aria-hidden="true"></div>
+<div class="seafloor" aria-hidden="true"></div>
+<div class="coral left" aria-hidden="true">🪸🌿</div>
+<div class="coral right" aria-hidden="true">🌿🪸</div>
+
+<main class="scene">
+
+  <section class="card">
+
+    <div class="contenido">
+
+      <!-- PORTADA -->
+      <div class="portada">
+        <img
+          src="./portada-bob.png"
+          alt="Bob Esponja y sus amigos">
+
+        <div class="portada-nombre">ABDIAS</div>
+      </div>
+
+      <div class="label">
+        🌊 ¡FONDO DE BIKINI TE INVITA! 🌊
+      </div>
+
+      <div class="pineapple">🍍</div>
+
+      <h1>¡ESTÁS<br>INVITADO!</h1>
+
+      <p class="note">¡A celebrar los 6 añitos de!</p>
+
+      <div class="name">ABDÍAS SABALLOS</div>
+
+      <!-- NÚMERO 6 -->
+      <div class="numero-bob">
+        <img
+          src="./n%C3%BAmero-6.png"
+          alt="Número 6 amarillo">
+      </div>
+
+      <p class="note">
+        ¡Prepárate para una aventura bajo el mar!
+      </p>
+
+      <!-- INFORMACIÓN DE LA FIESTA -->
+      <div class="details">
+
+        <div class="detail">
+          📅
+          <strong>FECHA</strong>
+          15 DE OCTUBRE DE 2026
+        </div>
+
+        <div class="detail">
+          ⏰
+          <strong>HORA</strong>
+          3:00 P. M.
+        </div>
+
+        <div class="detail">
+          📍
+          <strong>LUGAR</strong>
+          ¡PRÓXIMAMENTE!
+        </div>
+
+        <a
+          class="button yellow"
+          href="https://www.google.com/maps"
+          target="_blank"
+          rel="noopener">
+          📍 VER UBICACIÓN
+        </a>
+
+      </div>
+
+      <p class="note frase-final">
+        🫧 ¡VEN CON MUCHAS GANAS DE JUGAR, REÍR Y CELEBRAR! 🐚
+      </p>
+
+      <a
+        class="button confirmar"
+        href="https://wa.me/?text=Hola%2C%20confirmo%20mi%20asistencia%20al%20cumplea%C3%B1os%20de%20Abd%C3%ADas%20Saballos%2C%20el%2015%20de%20octubre%20a%20las%203%20p.%20m."
+        target="_blank"
+        rel="noopener">
+        💌 CONFIRMAR ASISTENCIA
+      </a>
+
+    </div>
+
+    <!-- PERSONAJES EN LA ESQUINA INFERIOR IZQUIERDA -->
+    <div class="zona-personajes">
+      <div class="personajes-finales" aria-hidden="true">
+        <img
+          src="./personajes-fondo-bikini.png"
+          alt="">
+      </div>
+    </div>
+
+  </section>
+
+  <div class="footer">🫧 ¡TE ESPERAMOS! 🫧</div>
+
+</main>
+
+<script>
+/* REPRODUCTOR COMPATIBLE CON SAFARI Y CHROME MÓVIL */
+const musica = document.getElementById("musica");
+const botonMusica = document.getElementById("boton-musica");
+
+musica.volume = 0.7;
+
+botonMusica.addEventListener("click", async function () {
+  if (musica.paused) {
+    botonMusica.textContent = "⏳ CARGANDO MÚSICA...";
+
+    try {
+      await musica.play();
+
+      botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
+      botonMusica.setAttribute("aria-pressed", "true");
+    } catch (error) {
+      console.error("No se pudo reproducir el audio:", error);
+
+      botonMusica.textContent = "🎵 INTENTAR DE NUEVO";
+
+      alert(
+        "No se pudo reproducir la música. " +
+        "Comprueba tu conexión a internet y que el archivo musica.mp3 " +
+        "esté correctamente subido a GitHub."
+      );
+    }
+  } else {
+    musica.pause();
+
+    botonMusica.textContent = "🎵 ¡PONER MÚSICA!";
+    botonMusica.setAttribute("aria-pressed", "false");
+  }
+});
+
+/* ACTUALIZAR EL BOTÓN SI LA CANCIÓN TERMINA O SE PAUSA */
+musica.addEventListener("pause", function () {
+  botonMusica.textContent = "🎵 ¡PONER MÚSICA!";
+  botonMusica.setAttribute("aria-pressed", "false");
+});
+
+musica.addEventListener("play", function () {
+  botonMusica.textContent = "⏸️ PAUSAR MÚSICA";
+  botonMusica.setAttribute("aria-pressed", "true");
+});
+
+/* BURBUJAS ANIMADAS */
+const contenedor = document.getElementById("bubbles");
+
+for (let i = 0; i < 26; i++) {
+  const burbuja = document.createElement("div");
+  burbuja.className = "bubble";
+
+  const size = 12 + Math.random() * 30;
+
+  burbuja.style.width = size + "px";
+  burbuja.style.height = size + "px";
+  burbuja.style.left = Math.random() * 100 + "%";
+  burbuja.style.animationDuration =
+    (7 + Math.random() * 9) + "s";
+  burbuja.style.animationDelay =
+    (-Math.random() * 16) + "s";
+
+  contenedor.appendChild(burbuja);
+}
+</script>
+
+</body>
+</html>
